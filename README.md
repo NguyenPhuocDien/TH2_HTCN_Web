@@ -1,7 +1,10 @@
-# TH2_HTCN_Web
-Nhập môn hệ thống công nghệ web tuần 2. Nội dụng:  Basic HTML + CSS
+# Bài Tập Tuần 2 – Hệ Thống Công Nghệ Web
 
-# Tác giả
-Họ tên: Nguyễn Phước Điền
-MSSV: 21002595
-Môn học: Hệ Thống Công Nghệ Web
+**Chủ đề:** Cơ bản về HTML và CSS  
+**Môn học:** Hệ Thống Công Nghệ Web
+
+## ✍️ Tác giả
+
+- **Họ tên:** Nguyễn Phước Điền  
+- **MSSV:** 21002959  
+- **Lớp học phần:** Hệ Thống Công Nghệ Web
