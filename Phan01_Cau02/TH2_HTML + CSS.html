@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Môn Học Khoa Học Máy Tính</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .subject-item:nth-child(1) { border-left-color: #ef4444; background-color: #fef2f2; }
+        .subject-item:nth-child(2) { border-left-color: #f59e0b; background-color: #fefce8; }
+        .subject-item:nth-child(3) { border-left-color: #10b981; background-color: #f0fdf4; }
+        .subject-item:nth-child(4) { border-left-color: #8b5cf6; background-color: #f5f3ff; }
+        .subject-item:nth-child(5) { border-left-color: #3b82f6; background-color: #eff6ff; }
+        .subject-item:nth-child(6) { border-left-color: #f97316; background-color: #fff7ed; }
+        .subject-item:hover {
+            transform: translateX(8px);
+            background-color: #ffffff !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-cyan-100 to-pink-100 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-2xl w-full bg-white rounded-2xl shadow-xl p-8">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">📚 Danh Sách Môn Học Yêu Thích</h1>
+        <ul class="list-none space-y-4">
+            <li class="subject-item p-6 rounded-lg border-l-4 transition-all duration-300 cursor-pointer">
+                <div class="flex items-center">
+                    <span class="text-2xl mr-3">💻</span>
+                    <div>
+                        <div class="text-lg font-semibold text-gray-800">Cấu Trúc Dữ Liệu và Giải Thuật</div>
+                        <div class="text-gray-600 text-sm">Học cách tổ chức dữ liệu và thiết kế thuật toán tối ưu.</div>
+                    </div>
+                </div>
+            </li>
+            <li class="subject-item p-6 rounded-lg border-l-4 transition-all duration-300 cursor-pointer">
+                <div class="flex items-center">
+                    <span class="text-2xl mr-3">🔍</span>
+                    <div>
+                        <div class="text-lg font-semibold text-gray-800">Trí Tuệ Nhân Tạo</div>
+                        <div class="text-gray-600 text-sm">Khám phá học máy và các ứng dụng AI trong thực tế.</div>
+                    </div>
+                </div>
+            </li>
+            <li class="subject-item p-6 rounded-lg border-l-4 transition-all duration-300 cursor-pointer">
+                <div class="flex items-center">
+                    <span class="text-2xl mr-3">🖥️</span>
+                    <div>
+                        <div class="text-lg font-semibold text-gray-800">Hệ Điều Hành</div>
+                        <div class="text-gray-600 text-sm">Tìm hiểu cách quản lý tài nguyên và quy trình trong hệ thống.</div>
+                    </div>
+                </div>
+            </li>
+            <li class="subject-item p-6 rounded-lg border-l-4 transition-all duration-300 cursor-pointer">
+                <div class="flex items-center">
+                    <span class="text-2xl mr-3">🌐</span>
+                    <div>
+                        <div class="text-lg font-semibold text-gray-800">Mạng Máy Tính</div>
+                        <div class="text-gray-600 text-sm">Nghiên cứu giao thức mạng và bảo mật hệ thống mạng.</div>
+                    </div>
+                </div>
+            </li>
+            <li class="subject-item p-6 rounded-lg border-l-4 transition-all duration-300 cursor-pointer">
+                <div class="flex items-center">
+                    <span class="text-2xl mr-3">🗄️</span>
+                    <div>
+                        <div class="text-lg font-semibold text-gray-800">Cơ Sở Dữ Liệu</div>
+                        <div class="text-gray-600 text-sm">Thiết kế và quản lý cơ sở dữ liệu với SQL và NoSQL.</div>
+                    </div>
+                </div>
+            </li>
+            <li class="subject-item p-6 rounded-lg border-l-4 transition-all duration-300 cursor-pointer">
+                <div class="flex items-center">
+                    <span class="text-2xl mr-3">🔒</span>
+                    <div>
+                        <div class="text-lg font-semibold text-gray-800">An Ninh Mạng</div>
+                        <div class="text-gray-600 text-sm">Bảo vệ hệ thống trước các mối đe dọa an ninh mạng.</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
