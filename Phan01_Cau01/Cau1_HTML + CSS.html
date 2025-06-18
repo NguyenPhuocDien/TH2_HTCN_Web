@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nguyễn Phước Điền | Hồ sơ cá nhân</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #f1faee, #a8dadc);
+      color: #1d3557;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: white;
+      max-width: 1000px;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      overflow: hidden;
+    }
+
+    .left {
+      background: #1d3557;
+      color: white;
+      padding: 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .left img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 5px solid white;
+      object-fit: cover;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .left img:hover {
+      transform: scale(1.05);
+    }
+
+    .left h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .left p {
+      font-size: 1rem;
+      font-style: italic;
+      opacity: 0.85;
+    }
+
+    .right {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .right h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #e63946;
+      margin-bottom: 20px;
+    }
+
+    .right h2::after {
+      content: '';
+      display: block;
+      width: 150px;
+      height: 3px;
+      background: linear-gradient(90deg, #e63946 0%, #ffb3b8 100%); 
+      margin-top: 8px;
+      transition: width 0.3s ease;
+    }
+
+    .right h2:hover::after {
+      width: 200px;
+    }
+
+    .info {
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .info p {
+      margin-bottom: 8px;
+      transition: color 0.3s ease;
+    }
+
+    .info p:hover {
+      color: #e63946;
+    }
+
+    .info span {
+      font-weight: 600;
+      color: #e63946;
+    }
+
+    .social {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .social a {
+      color: #6b7280;
+      font-size: 1.3rem;
+      transition: color 0.3s ease;
+    }
+
+    .social a:hover {
+      color: #e63946;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .button {
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .back-button {
+      background: #e63946;
+      color: white;
+    }
+
+    .back-button:hover {
+      background: #d00000;
+    }
+
+    .contact-button {
+      background: transparent;
+      color: #e63946;
+      border: 2px solid #e63946;
+    }
+
+    .contact-button:hover {
+      background: #e63946;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        grid-template-columns: 1fr;
+      }
+      .left, .right {
+        padding: 30px;
+      }
+      .left img {
+        width: 140px;
+        height: 140px;
+      }
+      .buttons {
+        flex-direction: column;
+      }
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="left">
+      <img src="https://picsum.photos/200" alt="Avatar">
+      <h1>Nguyễn Phước Điền</h1>
+      <p>"Học hỏi mỗi ngày để trở thành phiên bản tốt hơn!"</p>
+    </div>
+    <div class="right">
+      <h2>Thông tin cá nhân</h2>
+      <div class="info">
+        <p><span>Tuổi:</span> 22 tuổi</p>
+        <p><span>Trường:</span> Đại học Công nghiệp TP.HCM</p>
+        <p><span>Ngành:</span> Khoa học máy tính</p>
+        <p><span>Sở thích:</span> Đọc sách, nghe nhạc, lập trình</p>
+        <p><span>Mục tiêu:</span> Trở thành lập trình viên giỏi</p>
+      </div>
+      <div class="social">
+        <a href="#" title="LinkedIn"><svg xmlns="" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.473 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.527 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.226c.837 0 1.357-.554 1.357-1.248-.015-.708-.52-1.248-1.342-1.248-.823 0-1.356.54-1.356 1.248 0 .694.52 1.248 1.326 1.248h.015zM13.458 13.394v-3.873c0-2.067-1.104-3.028-2.577-3.028-1.188 0-1.723.655-2.023 1.116v-0.955h-2.4c.03.632 0 7.225 0 7.225h2.4v-4.034c0-.215.015-.43.08-.584.174-.43.571-.877 1.238-.877.873 0 1.222.661 1.222 1.631v3.864h2.06z"/></svg></a>
+        <a href="#" title="GitHub"><svg xmlns="" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8.002 8.002 0 005.47 7.59c.4.074.547-.174.547-.386 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.727-.497.055-.487.055-.487.803.057 1.225.825 1.225.825.714 1.222 1.873.87 2.33.665.072-.517.28-.87.508-1.07-1.776-.2-3.644-.888-3.644-3.957 0-.874.31-1.588.823-2.148-.083-.203-.357-1.017.078-2.12 0 0 .672-.215 2.2.82A7.672 7.672 0 018 4.6c.68.003 1.36.092 1.995.27 1.527-1.035 2.198-.82 2.198-.82.437 1.103.162 1.917.08 2.12.513.56.822 1.274.822 2.148 0 3.077-1.87 3.754-3.65 3.95.288.248.544.736.544 1.484 0 1.07-.01 1.932-.01 2.195 0 .215.145.464.55.385A8.001 8.001 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
