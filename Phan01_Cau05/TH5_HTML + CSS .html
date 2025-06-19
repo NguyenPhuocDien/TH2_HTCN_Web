@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXURY NAV | Hệ Thống Điều Hướng Cao Cấp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-primary: #1a1a2e;
+            --color-secondary: #16213e;
+            --color-accent: #0f3460;
+            --color-highlight: #e94560;
+            --color-gold: #D4AF37;
+            --color-text: #f1f1f1;
+            --color-text-secondary: #b8b8b8;
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-text);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 0.8rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to right, rgba(22, 33, 62, 0.9), rgba(26, 26, 46, 0.9));
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .navbar__logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .navbar__logo-icon {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--color-gold), var(--color-highlight));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .navbar__logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--color-text), var(--color-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .navbar__links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .navbar__link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            text-decoration: none;
+        }
+        
+        .navbar__link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--color-gold), var(--color-highlight));
+            transition: width 0.3s ease;
+        }
+        
+        .navbar__link:hover::after {
+            width: 100%;
+        }
+        
+        .navbar__link:hover {
+            color: var(--color-gold);
+        }
+        
+        .navbar__link i {
+            font-size: 0.9rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            background: linear-gradient(45deg, var(--color-highlight), var(--color-gold));
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+            text-decoration: none;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .menu-toggle__bar {
+            width: 25px;
+            height: 2px;
+            background: var(--color-gold);
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 992px) {
+            .navbar__links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                max-width: 320px;
+                height: 100vh;
+                background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                transition: right 0.3s ease;
+            }
+            
+            .navbar__links.active {
+                right: 0;
+            }
+            
+            .menu-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+            
+            .menu-toggle.active .menu-toggle__bar:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+            
+            .menu-toggle.active .menu-toggle__bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.active .menu-toggle__bar:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+        }
+        
+        .hero__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--color-text), var(--color-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero__subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        
+        .hero__actions {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .hero__bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop') no-repeat center/cover;
+            clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+            opacity: 0.8;
+            z-index: -1;
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+                justify-content: center;
+            }
+            
+            .hero__title {
+                font-size: 2.5rem;
+            }
+            
+            .hero__subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero__actions {
+                justify-content: center;
+            }
+            
+            .hero__bg {
+                width: 100%;
+                height: 40%;
+                top: auto;
+                bottom: 0;
+                clip-path: polygon(0% 15%, 100% 0%, 100% 100%, 0% 100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#" class="navbar__logo">
+            <span class="navbar__logo-text">IUH</span>
+        </a>
+        
+        <ul class="navbar__links" id="navLinks">
+            <li><a href="#home" class="navbar__link"><i class="fas fa-home"></i> Trang chủ</a></li>
+            <li><a href="#products" class="navbar__link"><i class="fas fa-gem"></i> Sản phẩm</a></li>
+            <li><a href="#services" class="navbar__link"><i class="fas fa-concierge-bell"></i> Dịch vụ</a></li>
+            <li><a href="#portfolio" class="navbar__link"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+            <li><a href="#contact" class="navbar__link"><i class="fas fa-phone-alt"></i> Liên hệ</a></li>
+        </ul>
+        
+        <button class="btn"><i class="fas fa-user-plus"></i> Đăng nhập</button>
+        
+        <button class="menu-toggle" id="menuToggle">
+            <span class="menu-toggle__bar"></span>
+            <span class="menu-toggle__bar"></span>
+            <span class="menu-toggle__bar"></span>
+        </button>
+    </nav>
+    
+    <section id="home" class="hero">
+        <div class="hero__content">
+            <h1 class="hero__title">Trải nghiệm đẳng cấp hoàn toàn mới</h1>
+            <p class="hero__subtitle">Khám phá hành trình học thuật đẳng cấp tại Đại học Công nghiệp TP.HCM (IUH). Chúng tôi cung cấp những chương trình đào tạo chất lượng cao, được thiết kế riêng để phù hợp với nhu cầu của bạn.</p>
+            <div class="hero__actions">
+                <a href="#products" class="btn">Khám phá ngay</a>
+                <a 
+                    class="btn" 
+                    style="background: rgba(255,255,255,0.1); border: 1px solid var(--glass-border);" 
+                    href="https://youtu.be/MSSNmxWw4Fs?si=W9SfQYwEgo6BiUaF" 
+                    target="_blank" 
+                    rel="noopener"
+                >
+                    <i class="fas fa-play"></i> Xem video
+                </a>
+            </div>
+        </div>
+        <div class="hero__bg"></div>
+    </section>
+
+    <script>
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
