@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thời Khoá Biểu</title>
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border: 2px solid #34495e;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .schedule-table thead {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+        
+        .schedule-table th {
+            padding: 15px;
+            text-align: center; 
+            font-weight: bold;
+            font-size: 1.1em;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .schedule-table td {
+            padding: 12px;
+            text-align: center; 
+            border: 1px solid #bdc3c7;
+            transition: background 0.3s ease;
+        }
+        
+        .schedule-table tbody tr:nth-child(odd) {
+            background-color: #ecf0f1; 
+        }
+        
+        .schedule-table tbody tr:nth-child(even) {
+            background-color: #ffffff; 
+        }
+        
+        .schedule-table tbody tr:hover {
+            background-color: #d5dbdb !important;
+            transform: scale(1.02);
+        }
+        
+        .time-column {
+            background-color: #f8f9fa !important;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .subject-cell {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .empty-cell {
+            color: #95a5a6;
+            font-style: italic;
+        }
+        
+        .back-button {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: #9b59b6;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .back-button:hover {
+            background: #8e44ad;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thời Khoá Biểu</h1>
+        
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Giờ</th>
+                    <th>Thứ 2</th>
+                    <th>Thứ 3</th>
+                    <th>Thứ 4</th>
+                    <th>Thứ 5</th>
+                    <th>Thứ 6</th>
+                    <th>Thứ 7</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-column">7:00 - 8:30</td>
+                    <td class="subject-cell">Toán Rời Rạc</td>
+                    <td class="empty-cell">Trống</td>
+                    <td class="subject-cell">Cấu trúc Dữ liệu</td>
+                    <td class="subject-cell">Lập trình Hướng Đối tượng</td>
+                    <td class="subject-cell">Tiếng Anh</td>
+                    <td class="empty-cell">Trống</td>
+                </tr>
+                <tr>
+                    <td class="time-column">8:45 - 10:15</td>
+                    <td class="subject-cell">Lập trình Python</td>
+                    <td class="subject-cell">Hệ điều hành</td>
+                    <td class="subject-cell">Tiếng Anh</td>
+                    <td class="subject-cell">Lập trình Python</td>
+                    <td class="subject-cell">Mạng Máy tính</td>
+                    <td class="subject-cell">Thực hành Lập trình</td>
+                </tr>
+                <tr>
+                    <td class="time-column">10:30 - 12:00</td>
+                    <td class="subject-cell">Tiếng Anh</td>
+                    <td class="subject-cell">Cấu trúc Dữ liệu</td>
+                    <td class="subject-cell">Toán Rời Rạc</td>
+                    <td class="subject-cell">Hệ điều hành</td>
+                    <td class="subject-cell">Lập trình Hướng Đối tượng</td>
+                    <td class="empty-cell">Trống</td>
+                </tr>
+                <tr>
+                    <td class="time-column">13:00 - 14:30</td>
+                    <td class="subject-cell">Mạng Máy tính</td>
+                    <td class="subject-cell">Trí tuệ Nhân tạo</td>
+                    <td class="subject-cell">Cơ sở Dữ liệu</td>
+                    <td class="subject-cell">Thực hành Lập trình</td>
+                    <td class="empty-cell">Trống</td>
+                    <td class="empty-cell">Trống</td>
+                </tr>
+                <tr>
+                    <td class="time-column">14:45 - 16:15</td>
+                    <td class="subject-cell">Cơ sở Dữ liệu</td>
+                    <td class="subject-cell">Lập trình Python</td>
+                    <td class="subject-cell">Trí tuệ Nhân tạo</td>
+                    <td class="subject-cell">Mạng Máy tính</td>
+                    <td class="empty-cell">Trống</td>
+                    <td class="empty-cell">Trống</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
