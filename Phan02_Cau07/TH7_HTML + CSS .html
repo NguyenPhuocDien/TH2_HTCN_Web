@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư viện ảnh</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            max-width: 1200px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2d3436;
+            margin-bottom: 40px;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        h1:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #74b9ff, #0984e3);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .image-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .image-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        
+        .image-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .image-card:hover img {
+            transform: scale(1.15);
+        }
+        
+        .image-info {
+            padding: 25px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .image-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .image-title:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: #0984e3;
+            border-radius: 2px;
+        }
+        
+        .image-description {
+            color: #636e72;
+            line-height: 1.6;
+            font-size: 1em;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(116, 185, 255, 0.9), rgba(9, 132, 227, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(3px);
+        }
+        
+        .image-card:hover .overlay {
+            opacity: 1;
+        }
+        
+        .overlay-text {
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px 30px;
+            border: 2px solid white;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .overlay-text:hover {
+            background: white;
+            color: #0984e3;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thư viện ảnh nghệ thuật</h1>
+        
+        <div class="gallery">
+            <div class="image-card">
+                <img src="https://picsum.photos/400/250?random=10" alt="Phong cảnh núi">
+                <div class="overlay">
+                    <div class="overlay-text">Xem chi tiết</div>
+                </div>
+                <div class="image-info">
+                    <div class="image-title">Dãy núi hùng vĩ</div>
+                    <div class="image-description">Khung cảnh núi non hùng vĩ với những đỉnh cao chạm mây trắng</div>
+                </div>
+            </div>
+            
+            <div class="image-card">
+                <img src="https://picsum.photos/400/250?random=11" alt="Bãi biển">
+                <div class="overlay">
+                    <div class="overlay-text">Xem chi tiết</div>
+                </div>
+                <div class="image-info">
+                    <div class="image-title">Bãi biển hoang sơ</div>
+                    <div class="image-description">Bờ biển xanh ngắt với làn nước trong vắt và cát trắng mịn</div>
+                </div>
+            </div>
+            
+            <div class="image-card">
+                <img src="https://picsum.photos/400/250?random=12" alt="Thành phố">
+                <div class="overlay">
+                    <div class="overlay-text">Xem chi tiết</div>
+                </div>
+                <div class="image-info">
+                    <div class="image-title">Thành phố về đêm</div>
+                    <div class="image-description">Ánh đèn rực rỡ của thành phố trong đêm tối</div>
+                </div>
+            </div>
+            
+            <div class="image-card">
+                <img src="https://picsum.photos/400/250?random=13" alt="Rừng cây">
+                <div class="overlay">
+                    <div class="overlay-text">Xem chi tiết</div>
+                </div>
+                <div class="image-info">
+                    <div class="image-title">Rừng cây xanh</div>
+                    <div class="image-description">Khu rừng xanh mướt với những tán cây rậm rạp</div>
+                </div>
+            </div>
+            
+            <div class="image-card">
+                <img src="https://picsum.photos/400/250?random=14" alt="Hoa lá">
+                <div class="overlay">
+                    <div class="overlay-text">Xem chi tiết</div>
+                </div>
+                <div class="image-info">
+                    <div class="image-title">Vườn hoa đẹp</div>
+                    <div class="image-description">Những bông hoa rực rỡ sắc màu trong vườn</div>
+                </div>
+            </div>
+            
+            <div class="image-card">
+                <img src="https://picsum.photos/400/250?random=15" alt="Kiến trúc">
+                <div class="overlay">
+                    <div class="overlay-text">Xem chi tiết</div>
+                </div>
+                <div class="image-info">
+                    <div class="image-title">Kiến trúc cổ</div>
+                    <div class="image-description">Công trình kiến trúc cổ kính với lịch sử lâu đời</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
