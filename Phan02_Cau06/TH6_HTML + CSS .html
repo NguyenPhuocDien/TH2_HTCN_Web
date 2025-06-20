@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiển thị ảnh + mô tả</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        figure {
+            margin: 0;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .main-image {
+            width: 100%;
+            max-width: 500px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .main-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        figcaption {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            color: #555;
+            font-size: 1.1em;
+            line-height: 1.6;
+            border-left: 4px solid #667eea;
+        }
+        
+        .image-gallery {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail:hover {
+            border-color: #667eea;
+            transform: scale(1.1);
+        }
+        
+        .image-selector {
+            display: none;
+        }
+        
+        .main-image-container {
+            position: relative;
+        }
+        
+        .image-content {
+            display: none;
+        }
+        
+        #select1:checked ~ .main-image-container .content1,
+        #select2:checked ~ .main-image-container .content2,
+        #select3:checked ~ .main-image-container .content3,
+        #select4:checked ~ .main-image-container .content4 {
+            display: block;
+        }
+        
+        #select1:checked ~ .image-gallery label[for="select1"] img,
+        #select2:checked ~ .image-gallery label[for="select2"] img,
+        #select3:checked ~ .image-gallery label[for="select3"] img,
+        #select4:checked ~ .image-gallery label[for="select4"] img {
+            border-color: #667eea;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thư viện ảnh đẹp</h1>
+        
+        <input type="radio" name="imageSelector" id="select1" class="image-selector" checked>
+        <input type="radio" name="imageSelector" id="select2" class="image-selector">
+        <input type="radio" name="imageSelector" id="select3" class="image-selector">
+        <input type="radio" name="imageSelector" id="select4" class="image-selector">
+        
+        <div class="main-image-container">
+            <figure class="image-content content1">
+                <img src="https://picsum.photos/500/300?random=1" alt="Ảnh phong cảnh đẹp" class="main-image">
+                <figcaption>
+                    <strong>Phong cảnh thiên nhiên tuyệt đẹp</strong><br>
+                    Một khung cảnh thiên nhiên thơ mộng với những màu sắc tươi đẹp và ánh sáng tự nhiên. 
+                    Hình ảnh này mang đến cảm giác bình yên và thư giãn cho người xem.
+                </figcaption>
+            </figure>
+            
+            <figure class="image-content content2">
+                <img src="https://picsum.photos/500/300?random=2" alt="Ảnh kiến trúc" class="main-image">
+                <figcaption>
+                    <strong>Kiến trúc hiện đại</strong><br>
+                    Những công trình kiến trúc độc đáo với thiết kế sáng tạo và ấn tượng. 
+                    Mỗi tòa nhà là một tác phẩm nghệ thuật đương đại.
+                </figcaption>
+            </figure>
+            
+            <figure class="image-content content3">
+                <img src="https://picsum.photos/500/300?random=3" alt="Ảnh đô thị" class="main-image">
+                <figcaption>
+                    <strong>Cuộc sống đô thị</strong><br>
+                    Nhịp sống sôi động của thành phố với những tòa nhà cao tầng và đèn neon rực rỡ. 
+                    Cảnh vật về đêm mang một vẻ đẹp đầy năng lượng.
+                </figcaption>
+            </figure>
+            
+            <figure class="image-content content4">
+                <img src="https://picsum.photos/500/300?random=4" alt="Ảnh nghệ thuật" class="main-image">
+                <figcaption>
+                    <strong>Nghệ thuật đường phố</strong><br>
+                    Những tác phẩm nghệ thuật đầy màu sắc và sáng tạo trên các bức tường. 
+                    Nghệ thuật đường phố mang đến hơi thở mới cho không gian đô thị.
+                </figcaption>
+            </figure>
+        </div>
+        
+        <div class="image-gallery">
+            <label for="select1">
+                <img src="https://picsum.photos/80/80?random=1" class="thumbnail" alt="Ảnh 1">
+            </label>
+            <label for="select2">
+                <img src="https://picsum.photos/80/80?random=2" class="thumbnail" alt="Ảnh 2">
+            </label>
+            <label for="select3">
+                <img src="https://picsum.photos/80/80?random=3" class="thumbnail" alt="Ảnh 3">
+            </label>
+            <label for="select4">
+                <img src="https://picsum.photos/80/80?random=4" class="thumbnail" alt="Ảnh 4">
+            </label>
+        </div>
+    </div>
+</body>
+</html>
