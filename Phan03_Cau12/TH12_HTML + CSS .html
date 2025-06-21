@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Khảo Sát Ý Kiến</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .survey-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .survey-title {
+            color: #333;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .survey-subtitle {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .progress-container {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.8s ease;
+        }
+
+        .question-group {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .question-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .radio-item:hover, .checkbox-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            accent-color: #667eea;
+        }
+
+        label {
+            cursor: pointer;
+            font-size: 16px;
+            color: #555;
+            flex: 1;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        input[name="service_rating"]:checked ~ .progress-update::after,
+        input[name="factors"]:checked ~ .progress-update::after,
+        textarea:valid ~ .progress-update::after {
+            content: "";
+        }
+
+        input[type="radio"]:checked {
+            transform: scale(1.1);
+        }
+
+        input[type="checkbox"]:checked {
+            transform: scale(1.1);
+        }
+
+        .radio-item:has(input:checked),
+        .checkbox-item:has(input:checked) {
+            background: rgba(102, 126, 234, 0.15);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .radio-item:has(input:checked) label,
+        .checkbox-item:has(input:checked) label {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        textarea:not(:placeholder-shown) {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .question-group:has(input:checked),
+        .question-group:has(textarea:not(:placeholder-shown)) {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .survey-container {
+                padding: 25px;
+                margin: 10px;
+            }
+            .survey-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="survey-container">
+        <h2 class="survey-title">Khảo Sát Ý Kiến Khách Hàng</h2>
+        <p class="survey-subtitle">Xin chào! Chúng tôi rất mong nhận được phản hồi từ bạn để cải thiện dịch vụ.</p>
+        
+        <div class="progress-container">
+            <div class="progress-label">
+                <span>Tiến trình hoàn thành:</span>
+                <span id="percent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="fill"></div>
+            </div>
+        </div>
+        
+        <form onsubmit="return handleSubmit(event)">
+            <div class="question-group">
+                <h3 class="question-title">1. Bạn đánh giá thế nào về dịch vụ của chúng tôi? <span class="required">*</span></h3>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="excellent" name="service_rating" value="excellent" onchange="updateProgress()" required>
+                        <label for="excellent">Xuất sắc</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="good" name="service_rating" value="good" onchange="updateProgress()">
+                        <label for="good">Tốt</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="average" name="service_rating" value="average" onchange="updateProgress()">
+                        <label for="average">Trung bình</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="poor" name="service_rating" value="poor" onchange="updateProgress()">
+                        <label for="poor">Kém</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <h3 class="question-title">2. Những yếu tố nào bạn quan tâm nhất? (Chọn nhiều đáp án)</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="quality" name="factors" value="quality" onchange="updateProgress()">
+                        <label for="quality">Chất lượng sản phẩm/dịch vụ</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="price" name="factors" value="price" onchange="updateProgress()">
+                        <label for="price">Giá cả hợp lý</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="support" name="factors" value="support" onchange="updateProgress()">
+                        <label for="support">Hỗ trợ khách hàng</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="delivery" name="factors" value="delivery" onchange="updateProgress()">
+                        <label for="delivery">Thời gian giao hàng</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="design" name="factors" value="design" onchange="updateProgress()">
+                        <label for="design">Thiết kế/Giao diện</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <h3 class="question-title">3. Bạn có góp ý gì thêm cho chúng tôi không?</h3>
+                <textarea name="feedback" placeholder="Hãy chia sẻ ý kiến, góp ý của bạn..." oninput="updateProgress()"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Gửi Khảo Sát</button>
+        </form>
+    </div>
+
+    <script>
+        function updateProgress() {
+            let completed = 0;
+            if (document.querySelector('input[name="service_rating"]:checked')) completed++;
+            if (document.querySelector('input[name="factors"]:checked')) completed++;
+            if (document.querySelector('textarea').value.trim()) completed++;
+            
+            const percent = Math.round((completed / 3) * 100);
+            document.getElementById('percent').textContent = percent + '%';
+            document.getElementById('fill').style.width = percent + '%';
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            updateProgress();
+            const percent = document.getElementById('percent').textContent;
+            
+            if (percent === '100%') {
+                alert('Cảm ơn bạn đã hoàn thành khảo sát!');
+            } else {
+                alert('Vui lòng hoàn thành tất cả câu hỏi.');
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
