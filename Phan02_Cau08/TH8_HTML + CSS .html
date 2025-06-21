@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ sưu tập Video</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+        
+        .video-section {
+            margin-bottom: 50px;
+        }
+        
+        .video-title {
+            font-size: 1.5em;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .video-container:hover {
+            transform: scale(1.02);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .video-description {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            color: #666;
+            line-height: 1.6;
+            border-left: 4px solid #ff9a9e;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .small-video {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .small-video:hover {
+            transform: translateY(-5px);
+        }
+        
+        .small-video .video-wrapper {
+            padding-bottom: 60%;
+        }
+        
+        .small-video.active {
+            border: 2px solid #ff9a9e;
+        }
+        
+        @media (max-width: 768px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bộ sưu tập Video</h1>
+        
+        <div class="video-section">
+            <div id="mainVideoTitle" class="video-title">Video chính - Học lập trình web</div>
+            <div class="video-container" id="mainVideoContainer">
+                <div class="video-wrapper">
+                    <iframe 
+                        id="mainVideo"
+                        src="https://www.youtube.com/embed/QRrPE9aj3wI" 
+                        title="Video học lập trình"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            <div id="mainVideoDescription" class="video-description">
+                <strong>Hướng dẫn học lập trình web từ cơ bản đến nâng cao</strong><br>
+                Video này sẽ hướng dẫn bạn các kiến thức cơ bản về HTML, CSS và JavaScript. 
+                Phù hợp cho người mới bắt đầu học lập trình web.
+            </div>
+        </div>
+        
+        <div class="video-grid">
+            <div class="small-video" 
+                data-video-src="https://www.youtube.com/embed/UB1O30fR-EE" 
+                data-video-title="HTML cơ bản" 
+                data-video-description="Học HTML từ những kiến thức cơ bản nhất">
+                <div class="video-title">HTML cơ bản</div>
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/UB1O30fR-EE" 
+                            title="HTML cơ bản"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="video-description">
+                    Học HTML từ những kiến thức cơ bản nhất
+                </div>
+            </div>
+            
+            <div class="small-video" 
+                data-video-src="https://www.youtube.com/embed/yfoY53QXEnI" 
+                data-video-title="CSS cho người mới" 
+                data-video-description="Tạo giao diện đẹp với CSS">
+                <div class="video-title">CSS cho người mới</div>
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/yfoY53QXEnI" 
+                            title="CSS cơ bản"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                <div class="video-description">
+                    Tạo giao diện đẹp với CSS
+                </div>
+            </div>
+        </div
