@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin Tức Hôm Nay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(255,255,255,0.05) 2px,
+                rgba(255,255,255,0.05) 4px
+            );
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 100%;
+            animation: gradient 3s ease infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .news-card:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .news-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .news-card:hover .news-image {
+            transform: scale(1.1);
+            filter: brightness(1.1) saturate(1.2);
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .news-title:hover {
+            color: #3498db;
+        }
+
+        .news-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .news-date {
+            font-weight: 500;
+        }
+
+        .news-category {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .news-category:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .read-more {
+            display: inline-block;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .read-more::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .read-more:hover::before {
+            left: 100%;
+        }
+
+        .read-more:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .read-more:active {
+            transform: translateY(0);
+        }
+
+        .featured-card {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(155, 89, 182, 0.1));
+        }
+
+        @media (max-width: 768px) {
+            .featured-card {
+                grid-column: span 1;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 20px;
+            }
+        }
+
+        .loading-shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Tin Tức Hôm Nay</h1>
+            <p>Cập nhật thông tin mới nhất từ khắp nơi trên thế giới</p>
+        </header>
+
+        <main class="news-grid">
+            <article class="news-card featured-card">
+                <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=400&fit=crop" alt="Tin tức chính" class="news-image">
+                <div class="news-content">
+                    <h2 class="news-title">Công nghệ AI đang thay đổi cách chúng ta làm việc</h2>
+                    <p class="news-description">Trí tuệ nhân tạo không chỉ là xu hướng mà đã trở thành một phần không thể thiếu trong cuộc sống hiện đại. Từ việc tự động hóa các tác vụ đơn giản đến giải quyết những vấn đề phức tạp, AI đang mở ra những cơ hội mới cho doanh nghiệp và cá nhân.</p>
+                    <div class="news-meta">
+                        <span class="news-date">15/06/2025</span>
+                        <span class="news-category">Công nghệ</span>
+                    </div>
+                    <a href="#" class="read-more">Đọc thêm</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop" alt="Kinh tế" class="news-image">
+                <div class="news-content">
+                    <h2 class="news-title">Thị trường chứng khoán tăng trường mạnh trong tuần qua</h2>
+                    <p class="news-description">Các chỉ số chứng khoán chính đều ghi nhận mức tăng ấn tượng nhờ vào những tín hiệu tích cực từ nền kinh tế và sự phục hồi của các ngành công nghiệp chủ chốt.</p>
+                    <div class="news-meta">
+                        <span class="news-date">14/06/2025</span>
+                        <span class="news-category">Kinh tế</span>
+                    </div>
+                    <a href="#" class="read-more">Đọc thêm</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="https://plus.unsplash.com/premium_photo-1744390859139-8fd8ed59d344?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Sức khỏe" class="news-image">
+                <div class="news-content">
+                    <h2 class="news-title">Bí quyết sống khỏe mạnh trong thời đại số</h2>
+                    <p class="news-description">Việc duy trì sức khỏe tốt trong kỷ nguyên công nghệ đòi hỏi những thói quen mới. Chuyên gia chia sẻ những lời khuyên thiết thực để cân bằng cuộc sống số và sức khỏe thể chất.</p>
+                    <div class="news-meta">
+                        <span class="news-date">13/06/2025</span>
+                        <span class="news-category">Sức khỏe</span>
+                    </div>
+                    <a href="#" class="read-more">Đọc thêm</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&h=400&fit=crop" alt="Du lịch" class="news-image">
+                <div class="news-content">
+                    <h2 class="news-title">Top 10 điểm đến hấp dẫn nhất mùa hè 2025</h2>
+                    <p class="news-description">Khám phá những địa điểm du lịch tuyệt vời đang được yêu thích nhất trong mùa hè này. Từ những bãi biển nhiệt đới đến các thành phố văn hóa châu Âu.</p>
+                    <div class="news-meta">
+                        <span class="news-date">12/06/2025</span>
+                        <span class="news-category">Du lịch</span>
+                    </div>
+                    <a href="#" class="read-more">Đọc thêm</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?w=600&h=400&fit=crop" alt="Giáo dục" class="news-image">
+                <div class="news-content">
+                    <h2 class="news-title">Xu hướng học tập trực tuyến sau đại dịch</h2>
+                    <p class="news-description">Giáo dục trực tuyến đã trở thành một phần quan trọng của hệ thống giáo dục hiện đại. Các nền tảng học tập số đang phát triển với nhiều tính năng mới.</p>
+                    <div class="news-meta">
+                        <span class="news-date">11/06/2025</span>
+                        <span class="news-category">Giáo dục</span>
+                    </div>
+                    <a href="#" class="read-more">Đọc thêm</a>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?w=600&h=400&fit=crop" alt="Môi trường" class="news-image">
+                <div class="news-content">
+                    <h2 class="news-title">Sáng kiến xanh: Các doanh nghiệp cam kết net-zero</h2>
+                    <p class="news-description">Ngày càng nhiều doanh nghiệp cam kết đạt mục tiêu phát thải ròng bằng không vào năm 2050. Đây là một bước tiến quan trọng trong cuộc chiến chống biến đổi khí hậu.</p>
+                    <div class="news-meta">
+                        <span class="news-date">10/06/2025</span>
+                        <span class="news-category">Môi trường</span>
+                    </div>
+                    <a href="#" class="read-more">Đọc thêm</a>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.news-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        document.querySelectorAll('.read-more').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            const scrolled = window.pageYOffset;
+            header.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
