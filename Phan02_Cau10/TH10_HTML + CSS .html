@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Phước Điền | Computer Science</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --dark-bg: #0f172a;
+            --code-bg: #1e1e2e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1e293b 100%);
+            padding: 4rem 0 6rem;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .profile-img-container {
+            flex-shrink: 0;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 6px solid var(--primary);
+            object-fit: cover;
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(37, 99, 235, 0.1);
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            display: block;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #cbd5e1;
+        }
+
+        .skill-item i {
+            color: var(--primary);
+        }
+
+        .code-block {
+            background: var(--code-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+        }
+
+        .comment { color: #6c757d; }
+        .keyword { color: #c792ea; }
+        .function { color: #82aaff; }
+        .string { color: #c3e88d; }
+        .variable { color: #f07178; }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .project-img-container {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .project-description {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 1.5rem 3rem;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            top: 2rem;
+            transform: translateX(-50%);
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+
+        .timeline-content {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .timeline-date {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .timeline-company {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .timeline-description {
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1e293b 100%);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact p {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background: #0b1120;
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .footer-text {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-img {
+                width: 220px;
+                height: 220px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>Nguyễn Phước Điền</h1>
+                    <div class="subtitle">Full-Stack Developer & Computer Scientist</div>
+                    <div class="description">
+                        Tôi là một <span class="highlight">lập trình viên full-stack</span> với 3 năm kinh nghiệm trong phát triển phần mềm. 
+                        Chuyên môn của tôi bao gồm thiết kế hệ thống phân tán, phát triển ứng dụng web hiệu suất cao 
+                        và triển khai các giải pháp AI/ML trong sản phẩm thực tế.
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-eye"></i>
+                            Xem Dự Án
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-paper-plane"></i>
+                            Liên Hệ Ngay
+                        </a>
+                    </div>
+                </div>
+                <div class="profile-img-container">
+                    <img src="https://picsum.photos/200/300" alt="Nguyễn Phước Điền" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Về Tôi</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Tôi tốt nghiệp loại <span class="highlight">Xuất sắc</span> ngành Khoa học Máy tính tại Đại học Bách Khoa Hà Nội 
+                        với luận văn về "Thuật toán tối ưu trong học máy". Trong 3 năm qua, tôi đã làm việc 
+                        tại các công ty công nghệ hàng đầu và tham gia phát triển nhiều sản phẩm có hàng triệu người dùng.
+                    </p>
+                    <p>
+                        Tôi đam mê giải quyết các vấn đề phức tạp bằng công nghệ và luôn tìm cách cải thiện 
+                        hiệu suất hệ thống. Ngoài lập trình, tôi thích nghiên cứu về AI, blockchain và các 
+                        hệ thống phân tán.
+                    </p>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <i class="fas fa-check"></i>
+                            Full-Stack Development
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-check"></i>
+                            System Design
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-check"></i>
+                            Machine Learning
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-check"></i>
+                            Cloud Architecture
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-check"></i>
+                            DevOps & CI/CD
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-check"></i>
+                            Database Optimization
+                        </div>
+                    </div>
+                </div>
+                <div class="code-block">
+                    <pre>
+<span class="comment">// Example of my clean code approach</span>
+<span class="keyword">class</span> <span class="function">SoftwareEngineer</span> {
+  <span class="keyword">constructor</span>(<span class="variable">name</span>, <span class="variable">skills</span>) {
+    <span class="keyword">this</span>.<span class="variable">name</span> = <span class="variable">name</span>;
+    <span class="keyword">this</span>.<span class="variable">skills</span> = <span class="variable">skills</span>;
+  }
+
+  <span class="function">develop</span>(<span class="variable">project</span>) {
+    <span class="keyword">return</span> <span class="string">`Developed ${project}`</span>;
+  }
+}
+
+<span class="keyword">const</span> <span class="variable">me</span> = <span class="keyword">new</span> <span class="function">SoftwareEngineer</span>(
+  <span class="string">'Nguyen Phuoc Dien'</span>, 
+  [<span class="string">'JavaScript'</span>, <span class="string">'Python'</span>, <span class="string">'System Design'</span>]
+);
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Dự Án Nổi Bật</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img-container">
+                        <img src="https://images.unsplash.com/photo-1612103198005-b238154f4590?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="E-commerce Platform" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Hệ Thống Thương Mại Điện Tử</h3>
+                        <p class="project-description">
+                            Platform thương mại điện tử xử lý 10,000+ giao dịch mỗi tháng với hệ thống thanh toán đa nền tảng, 
+                            quản lý kho thông minh và hệ thống đề xuất sản phẩm sử dụng máy học.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Redis</span>
+                            <span class="tech-tag">TensorFlow.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                <i class="fab fa-github"></i>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img-container">
+                        <img src="https://images.unsplash.com/photo-1707761918029-1295034aa31e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Financial App" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Hệ Thống Phân Tích Tài Chính AI</h3>
+                        <p class="project-description">
+                            Ứng dụng phân tích thói quen chi tiêu sử dụng machine learning để đề xuất kế hoạch tài chính cá nhân, 
+                            tích hợp với các ngân hàng lớn tại Việt Nam.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                Case Study
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                <i class="fab fa-github"></i>
+                                Algorithm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img-container">
+                        <img src="https://images.unsplash.com/photo-1623318996227-2740014a8721?q=80&w=1971&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Learning Management" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Hệ Thống Học Tập Thích Ứng</h3>
+                        <p class="project-description">
+                            Nền tảng học tập trực tuyến sử dụng AI để cá nhân hóa lộ trình học tập, tự động chấm điểm bài tập 
+                            và phân tích điểm mạnh/yếu của học viên.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                Demo Video
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                <i class="fab fa-github"></i>
+                                Research Paper
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img-container">
+                        <img src="https://plus.unsplash.com/premium_photo-1678566153919-86c4ba4216f1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Healthcare App" class="project-img">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Ứng Dụng Chăm Sóc Sức Khỏe AI</h3>
+                        <p class="project-description">
+                            Ứng dụng di động hỗ trợ theo dõi sức khỏe cá nhân, sử dụng AI để phân tích dữ liệu sinh học 
+                            và cung cấp gợi ý chăm sóc sức khỏe phù hợp.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">TensorFlow</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="btn btn-secondary">
+                                <i class="fab fa-github"></i>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Kinh Nghiệm Làm Việc</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 – 2025</div>
+                        <h3 class="timeline-title">Senior Software Engineer</h3>
+                        <span class="timeline-company">Viện Nghiên cứu Khoa học Dữ liệu</span>
+                        <p class="timeline-description">
+                            - Thiết kế kiến trúc hệ thống microservices cho sản phẩm chính.<br>
+                            - Phát triển các tính năng cốt lõi bằng Node.js và Python.<br>
+                            - Tối ưu hiệu suất cơ sở dữ liệu, giảm 40% thời gian truy vấn.<br>
+                            - Hướng dẫn 3 kỹ sư phần mềm cấp dưới.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 – 2024</div>
+                        <h3 class="timeline-title">Software Engineer</h3>
+                        <span class="timeline-company">Công ty Công nghệ</span>
+                        <p class="timeline-description">
+                            - Phát triển full-stack cho sản phẩm MVP.<br>
+                            - Triển khai hệ thống CI/CD trên AWS.<br>
+                            - Xây dựng API gateway xử lý hơn 5000 yêu cầu/phút.<br>
+                            - Tích hợp machine learning vào sản phẩm.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 – 2023</div>
+                        <h3 class="timeline-title">Junior Developer</h3>
+                        <span class="timeline-company">Công ty Startup</span>
+                        <p class="timeline-description">
+                            - Nghiên cứu và triển khai thuật toán recommendation system.<br>
+                            - Phát triển prototype ứng dụng AI.<br>
+                            - Viết báo cáo kỹ thuật và trình bày kết quả.<br>
+                            - Hỗ trợ phát triển giao diện frontend cho dự án nội bộ.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Liên Hệ</h2>
+            <div class="contact-content">
+                <p>
+                    Tôi luôn sẵn sàng thảo luận về các cơ hội hợp tác, dự án thú vị 
+                    hoặc đơn giản là trò chuyện về công nghệ. Hãy gửi email cho tôi!
+                </p>
+                <a href="mailto:npd.iuh@gmail.com" class="btn btn-primary" style="margin-top: 1rem;">
+                    <i class="fas fa-envelope"></i>
+                    npd.iuh@gmail.com
+                </a>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-medium"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">
+                2025 Nguyễn Phước Điền | All rights reserved
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
